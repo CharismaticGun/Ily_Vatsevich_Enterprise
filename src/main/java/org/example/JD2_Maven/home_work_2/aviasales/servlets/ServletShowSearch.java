@@ -20,6 +20,6 @@ public class ServletShowSearch extends HttpServlet {
 
         request.setAttribute("airports",dao.getAll());
 
-        context.getRequestDispatcher("/jsp/db/race_form.jsp").forward(request,response);
+        context.getRequestDispatcher("/jsp/aviasales/race_form.jsp").forward(request,response);
     }
 }

@@ -40,7 +40,7 @@ public class ServletSearchResult extends HttpServlet {
 
         ServletContext context = request.getServletContext();
 
-        context.getRequestDispatcher("/jsp/db/info_after_form.jsp").forward(request,response);
+        context.getRequestDispatcher("/jsp/aviasales/info_after_form.jsp").forward(request,response);
 
     }
 }

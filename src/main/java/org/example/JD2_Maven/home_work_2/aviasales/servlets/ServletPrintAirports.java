@@ -26,6 +26,6 @@ public class ServletPrintAirports extends HttpServlet {
             throw new RuntimeException(e);
         }
 
-        context.getRequestDispatcher("/jsp/db/print_airports.jsp").forward(request,response);
+        context.getRequestDispatcher("/jsp/aviasales/print_airports.jsp").forward(request,response);
     }
 }

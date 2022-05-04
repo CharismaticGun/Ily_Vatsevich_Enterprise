@@ -67,6 +67,7 @@ public class FlightsPullDao implements IFlightsDao {
                 for (Airport airport : dao.getAll()) {
                     if (airport.toString().equals(service.getAirportIn())) {
                         statement.setString(count,airport.getAirport_code());
+                        count++;
                     }
                 }
             }
@@ -77,7 +78,6 @@ public class FlightsPullDao implements IFlightsDao {
                     if (sb.toString().endsWith("\n")) {
                         flights.add(sb.toString().split(";"));
                         sb.setLength(0);
-                        count++;
                     }
                 }
             }

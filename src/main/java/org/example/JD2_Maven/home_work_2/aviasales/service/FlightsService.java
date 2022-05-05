@@ -51,35 +51,41 @@ public class FlightsService {
 
     public void setParam(HttpServletRequest request)  {
 
-        this.dateOut = formatDate(request.getParameter("dateOut") +
+        if (getSb().toString().equals("")) {
+
+            this.dateOut = formatDate(request.getParameter("dateOut") +
                     " " + request.getParameter("timeOut"));
 
-        this.airportOut = request.getParameter("airportOut");
+            this.airportOut = request.getParameter("airportOut");
 
-        this.dateIn = formatDate(request.getParameter("dateIn") +
+            this.dateIn = formatDate(request.getParameter("dateIn") +
                     " " + request.getParameter("timeIn"));
 
-        this.airportIn = request.getParameter("airportIn");
+            this.airportIn = request.getParameter("airportIn");
+        }
 
     }
 
     public void setQueryFlights() {
 
-        if (!getDateOut().equals("")) {
-            sb.append(QUERY_WHERE + "\tscheduled_departure_local = ? ");
-        }
-        if (!"".equals(getAirportOut())&&getAirportOut()!=null) {
-            sb.append(sb.length()>0?QUERY_AND : QUERY_WHERE).append("\tdeparture_airport = ? ");
-        }
-        if (!getDateIn().equals("")) {
-            sb.append(sb.length()>0?QUERY_AND : QUERY_WHERE).append("\tscheduled_arrival_local = ? ");
-        }
-        if (!"".equals(getAirportIn())&&getAirportIn()!=null) {
-            sb.append(sb.length()>0?QUERY_AND : QUERY_WHERE).append("\tarrival_airport = ? \n");
-        }
+        if (getSb().toString().equals("")) {
 
-        sb.append("OFFSET ?\n").append("LIMIT 25;").
-                insert(0,QUERY_FLIGHTS);
+            if (!getDateOut().equals("")) {
+                sb.append(QUERY_WHERE + "\tscheduled_departure_local = ? ");
+            }
+            if (!"".equals(getAirportOut()) && getAirportOut() != null) {
+                sb.append(sb.length() > 0 ? QUERY_AND : QUERY_WHERE).append("\tdeparture_airport = ? ");
+            }
+            if (!getDateIn().equals("")) {
+                sb.append(sb.length() > 0 ? QUERY_AND : QUERY_WHERE).append("\tscheduled_arrival_local = ? ");
+            }
+            if (!"".equals(getAirportIn()) && getAirportIn() != null) {
+                sb.append(sb.length() > 0 ? QUERY_AND : QUERY_WHERE).append("\tarrival_airport = ? \n");
+            }
+
+            sb.append("OFFSET ?\n").append("LIMIT 25;").
+                    insert(0, QUERY_FLIGHTS);
+        }
     }
 
     private String formatDate(String date) {

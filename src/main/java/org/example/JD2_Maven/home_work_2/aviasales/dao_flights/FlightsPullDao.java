@@ -109,6 +109,5 @@ public class FlightsPullDao implements IFlightsDao {
     @Override
     public void close() throws Exception {
         DataSources.destroy(this.ds);
-        service.getSb().setLength(0);
     }
 }
